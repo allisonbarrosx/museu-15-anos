@@ -69,7 +69,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white relative overflow-x-hidden pb-20 mt-5">
+    <div className="min-h-screen bg-slate-950 text-white relative overflow-x-hidden pb-20">
       <div className="animate-scanline fixed inset-0 pointer-events-none z-50"></div>
 
       <header className="relative w-full min-h-[60vh] flex flex-col items-center justify-center overflow-hidden border-b-4 border-purple-900 bg-black py-16">
@@ -286,6 +286,31 @@ const Home: React.FC = () => {
       <footer className="mt-20 py-8 text-center text-slate-500 text-sm relative z-20 bg-slate-950 border-t border-slate-900">
         <p>© 2024 Museu do VideoGame Itinerante. 15 Anos de História.</p>
         <p className="mt-1">Powered by Gemini Nano Banana</p>
+        <p className="mt-1">
+          Created by{" "}
+          <a
+            href="https://www.biancagarutti.com/"
+            target="_blank"
+            className="hover:text-purple-500 underline decoration-dotted"
+          >
+            BG STUDIO
+          </a>{" "}
+          - Dev team{" "}
+          <a
+            href="https://www.instagram.com/biancagarutti/"
+            className="hover:text-purple-500 underline decoration-dotted"
+          >
+            Bianca Garutti
+          </a>{" "}
+          e{" "}
+          <a
+            href="https://www.linkedin.com/in/allison-barros/"
+            target="_blank"
+            className="hover:text-purple-500 underline decoration-dotted"
+          >
+            Allison Barros
+          </a>
+        </p>
       </footer>
     </div>
   );
