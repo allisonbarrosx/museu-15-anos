@@ -291,14 +291,14 @@ const Home: React.FC = () => {
           <a
             href="https://www.biancagarutti.com/"
             target="_blank"
-            className="hover:text-purple-500 underline decoration-dotted"
+            className="hover:text-purple-500 underline decoration-dotted underline-offset-2"
           >
             BG STUDIO
           </a>{" "}
           - Dev team{" "}
           <a
             href="https://www.instagram.com/biancagarutti/"
-            className="hover:text-purple-500 underline decoration-dotted"
+            className="hover:text-purple-500 underline decoration-dotted underline-offset-2"
           >
             Bianca Garutti
           </a>{" "}
@@ -306,7 +306,7 @@ const Home: React.FC = () => {
           <a
             href="https://www.linkedin.com/in/allison-barros/"
             target="_blank"
-            className="hover:text-purple-500 underline decoration-dotted"
+            className="hover:text-purple-500 underline decoration-dotted underline-offset-2"
           >
             Allison Barros
           </a>
