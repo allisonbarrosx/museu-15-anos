@@ -1,0 +1,7 @@
+{
+  "name": "Museu do VideoGame - 15 Anos",
+  "description": "Celebração dos 15 anos do Museu do VideoGame Itinerante. Transforme sua selfie em gráficos de consoles clássicos.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
