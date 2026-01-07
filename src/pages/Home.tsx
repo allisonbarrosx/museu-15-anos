@@ -106,12 +106,6 @@ const Home: React.FC = () => {
               </div>
             )}
           </div>
-
-          <p className="text-lg md:text-2xl text-slate-300 max-w-3xl mx-auto font-light tracking-wide">
-            Viaje no tempo através dos pixels.{" "}
-            <br className="hidden md:block" />
-            Descubra sua versão na história dos games.
-          </p>
         </div>
       </header>
 
