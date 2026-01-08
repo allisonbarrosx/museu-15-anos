@@ -5,6 +5,7 @@ import ConsoleButton from "../components/ConsoleButton";
 import ImageUploader from "../components/ImageUploader";
 import { generateConsoleAvatar } from "../../services/geminiService";
 import museu15AnosPng from "../assets/images/museu_15_anos.png";
+import ImageMerger from "../components/ImageMerger";
 
 const Home: React.FC = () => {
   const [selectedConsole, setSelectedConsole] = useState<ConsoleOption | null>(
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
   const [resultImage, setResultImage] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
+  const [mergedImageUrl, setMergedImageUrl] = useState<string | null>(null);
 
   const handleConsoleSelect = useCallback((consoleData: ConsoleOption) => {
     setSelectedConsole(consoleData);
@@ -59,6 +61,21 @@ const Home: React.FC = () => {
       );
       setProcessingState("error");
     }
+  };
+
+  const handleMergeComplete = (data: string) => {
+    setMergedImageUrl(data);
+  };
+
+  const handleDownload = async () => {
+    if (!mergedImageUrl && selectedConsole) return;
+
+    const link = document.createElement("a");
+    link.href = mergedImageUrl ?? "";
+    link.download = `museu-15-anos-${selectedConsole?.id}-${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const resetApp = () => {
@@ -210,31 +227,17 @@ const Home: React.FC = () => {
                     )} to-pink-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200`}
                   ></div>
                   <div className="relative">
-                    <img
-                      src={resultImage}
-                      alt="Generated Avatar"
-                      className="rounded-lg shadow-2xl max-h-[60vh] w-auto mx-auto border-4 border-slate-900"
+                    <ImageMerger
+                      mainImageSrc={resultImage}
+                      watermarkImageSrc={museu15AnosPng}
+                      onMergeComplete={handleMergeComplete}
                     />
-                    <div className="absolute bottom-4 right-4 w-24 md:w-32 opacity-90 drop-shadow-lg filter brightness-110">
-                      {!imageError ? (
-                        <img
-                          src={museu15AnosPng}
-                          alt="Museu 15 Anos"
-                          className="w-full h-auto object-contain"
-                          onError={() => setImageError(true)}
-                        />
-                      ) : (
-                        <div className="text-white font-retro text-[10px] bg-black/50 px-2 py-1 border border-white/20 rounded">
-                          MUSEU 15 ANOS
-                        </div>
-                      )}
-                    </div>
                   </div>
                 </div>
 
                 <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center">
                   <a
-                    href={resultImage}
+                    onClick={handleDownload}
                     download={`museu-15anos-${selectedConsole.id}.png`}
                     className="px-8 py-4 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-xl transition-transform hover:scale-105 flex items-center justify-center gap-2 shadow-lg shadow-purple-900/50"
                   >

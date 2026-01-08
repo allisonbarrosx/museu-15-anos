@@ -43,6 +43,7 @@ export const generateConsoleAvatar = async (
       A estética da imagem deve ser realista
   
       Inclua decorações de festa (bolo, balões, banners) que remetam diretamente à identidade visual do ${consoleName}.
+      Apenas o sujeito deve aparecer na imagem.
       A saída deve ser SOMENTE a imagem transformada.
     `;
 
