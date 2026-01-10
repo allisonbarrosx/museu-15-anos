@@ -36,7 +36,7 @@ export const generateConsoleAvatar = async (
 ): Promise<string> => {
   try {
     const imagePart = await fileToGenerativePart(imageFile);
-
+    const aspect_ratio = "3:4";
     const prompt = `
       Reimagine a cena da foto enviada, mantendo as características faciais originais do sujeito (cabelo, rosto, acessórios), como uma festa de aniversário vibrante onde o tema central é o console de videogame ${consoleName}.
       
@@ -45,13 +45,19 @@ export const generateConsoleAvatar = async (
       Inclua decorações de festa (bolo, balões, banners) que remetam diretamente à identidade visual do ${consoleName}.
       Apenas o sujeito deve aparecer na imagem.
       A saída deve ser SOMENTE a imagem transformada.
-    `;
+      `;
+    // Proporção vertical 3:4 => this makes the AI not EDIT the image
 
     // Using 'gemini-2.5-flash-image' as requested
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash-image",
       contents: {
         parts: [imagePart, { text: prompt }],
+      },
+      config: {
+        imageConfig: {
+          aspectRatio: aspect_ratio,
+        },
       },
     });
 
