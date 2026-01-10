@@ -1,12 +1,4 @@
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Twitter,
-  ExternalLink,
-  Instagram,
-  Globe,
-} from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, Globe } from "lucide-react";
 import allisonProfilePic from "../assets/images/allison.jpg";
 import biancaProfilePic from "../assets/images/bianca.jpg";
 import NavigationMenu from "../components/NavigationMenu";
