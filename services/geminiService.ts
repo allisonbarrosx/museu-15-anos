@@ -2,12 +2,13 @@ import { GoogleGenAI } from "@google/genai";
 
 // Initialize the client
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const imageModelVersion = process.env.IMAGE_MODEL_VERSION;
 
 /**
  * Converts a File object to a base64 string suitable for the API (stripping headers).
  */
 const fileToGenerativePart = async (
-  file: File
+  file: File,
 ): Promise<{ inlineData: { data: string; mimeType: string } }> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -32,7 +33,7 @@ const fileToGenerativePart = async (
  */
 export const generateConsoleAvatar = async (
   imageFile: File,
-  consoleName: string
+  consoleName: string,
 ): Promise<string> => {
   try {
     const imagePart = await fileToGenerativePart(imageFile);
@@ -48,9 +49,12 @@ export const generateConsoleAvatar = async (
       `;
     // Proporção vertical 3:4 => this makes the AI not EDIT the image
 
-    // Using 'gemini-2.5-flash-image' as requested
+    if (!imageModelVersion) {
+      throw new Error("Google gemini model not found!");
+    }
+
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image",
+      model: imageModelVersion,
       contents: {
         parts: [imagePart, { text: prompt }],
       },
